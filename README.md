@@ -52,7 +52,7 @@ graph TD
     User(("👤 Voter"))
     UI["📱 React Frontend"]
     Server{"⚙️ Node.js Backend"}
-    Claude["🧠 Claude AI Model"]
+    GEMINI["🧠 Gemini AI"]
     Mongo[("💾 MongoDB Atlas")]
 
     %% Connections
@@ -163,7 +163,7 @@ Our vision is to scale ElectraGuide to serve India's 950 million voters. Future 
 
 | Name | Role | GitHub |
 | :--- | :--- | :--- |
-| Your Name | Full Stack Developer | [@your-username](https://github.com/jp7107) |
+| JyotiPrakash | Full Stack Developer | [@jp7107](https://github.com/jp7107) |  
 
 
 ## 📄 License
