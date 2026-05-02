@@ -4,7 +4,7 @@
 **AI-Powered Election Process Assistant for India**
 
 [![Built with React](https://img.shields.io/badge/Built_with-React-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
-[![Powered by Claude](https://img.shields.io/badge/Powered_by-Anthropic_Claude-7B61FF?style=for-the-badge&logo=anthropic)](https://www.anthropic.com/)
+[![Powered by Gemini](https://img.shields.io/badge/Powered_by-Google_Gemini-8E75B2?style=for-the-badge&logo=googlebard)](https://gemini.google.com/)
 [![Hackathon Submission](https://img.shields.io/badge/Hackathon-Submission-FF6B6B?style=for-the-badge&logo=devpost)](https://devpost.com)
 
 ![Demo](demo.gif)
@@ -58,8 +58,8 @@ graph TD
     %% Connections
     User -- "1. Asks Election Query" --> UI
     UI -- "2. Sends Chat Data" --> Server
-    Server -- "3. Prompt + Context" --> Claude
-    Claude -- "4. Neutral Guide" --> Server
+    Server -- "3. Prompt + Context" --> GEMINI
+    GEMINI -- "4. Neutral Guide" --> Server
     Server -- "5. Saves Chat History" --> Mongo
     Server -- "6. Returns JSON" --> UI
     UI -- "7. Displays to Screen" --> User
@@ -74,7 +74,7 @@ graph TD
     class User user;
     class UI frontend;
     class Server backend;
-    class Claude api;
+    class GEMINI api;
     class Mongo database;
 ```
 
@@ -84,7 +84,7 @@ graph TD
 | :--- | :--- | :--- |
 | **Frontend** | React (Vite) | Blazing fast, interactive UI built for mobile-first accessibility. |
 | **Styling** | Tailwind CSS | Modern, responsive, and clean design system. |
-| **AI Model** | Claude 3.5 Sonnet | `claude-sonnet-4-20250514` for highly intelligent, nuanced, and strictly neutral conversational logic. |
+| **AI Model** | Gemini 2.5 Flash | `gemini-2.5-flash` for highly intelligent, fast, and strictly neutral conversational logic. |
 | **Backend API** | Node.js / Express | Lightweight server to securely manage API calls and state. |
 
 ## 🚀 Getting Started
@@ -114,7 +114,7 @@ npm run dev:client
 Create a `.env` file in the `server` directory and add the following:
 
 ```env
-ANTHROPIC_API_KEY=your_claude_api_key_here
+GEMINI_API_KEY=your_gemini_api_key_here
 PORT=8080
 ```
 
@@ -131,7 +131,7 @@ ElectraGuide/
 │   └── vite.config.js
 ├── server/                 # Node.js Backend
 │   ├── routes/
-│   │   └── chat.js         # Claude API Integration & Persona Logic
+│   │   └── chat.js         # Gemini API Integration & Persona Logic
 │   ├── index.js            # Express Server Setup
 │   └── package.json
 ├── .gitignore
