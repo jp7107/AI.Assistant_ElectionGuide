@@ -1,158 +1,176 @@
-# ElectraGuide 🗳️
+<div align="center">
 
-**AI-powered Election Process Education Assistant for India**
+# ElectraGuide 🇮🇳
+**AI-Powered Election Process Assistant for India**
 
-ElectraGuide helps users — especially first-time voters — understand the Indian election process through an interactive AI chat assistant, visual timeline, polling booth finder, and knowledge quiz.
+[![Built with React](https://img.shields.io/badge/Built_with-React-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
+[![Powered by Claude](https://img.shields.io/badge/Powered_by-Anthropic_Claude-7B61FF?style=for-the-badge&logo=anthropic)](https://www.anthropic.com/)
+[![Hackathon Submission](https://img.shields.io/badge/Hackathon-Submission-FF6B6B?style=for-the-badge&logo=devpost)](https://devpost.com)
 
----
+![Demo](demo.gif)
+*(Please replace this placeholder with a demo GIF)*
 
-## Tech Stack
-
-| Layer      | Technology                        |
-|------------|-----------------------------------|
-| Frontend   | React (Vite) + Tailwind CSS      |
-| Backend    | Node.js + Express                 |
-| AI         | Google Gemini API                 |
-| Maps       | Google Maps API                   |
-| Data       | Google Sheets API                 |
-| Database   | MongoDB                           |
-| Deployment | Docker + Google Cloud Run         |
+</div>
 
 ---
 
-## Features
+## 🚨 The Problem
 
-- **🤖 AI Chat Assistant** — Personalised election guidance powered by Gemini AI
-- **📅 Election Timeline** — 11-step visual timeline of the election process
-- **📍 Polling Booth Finder** — Interactive map with booths across 8 major cities
-- **🧠 Election Quiz** — 10 MCQs with scoring, explanations, and leaderboard
+India is the world's largest democracy, yet millions of young, eligible citizens fail to vote. **Why?**
+* **Information Overload:** Government documents are written in complex legal jargon that alienates youth.
+* **Voter Ignorance:** First-time voters (18–25) often don't know the step-by-step process of registration, the required documents, or what actually happens inside a polling booth.
+* **Misinformation:** Political bias and fake news make it hard to find neutral, reliable, and straightforward civic education.
 
----
+## 💡 The Solution
 
-## Project Structure
+**ElectraGuide** is an interactive, strictly neutral AI assistant designed to demystify the Indian election process. In just a few conversational prompts, it transforms complex Election Commission guidelines into bite-sized, personalized, and engaging civic education for first-time voters.
 
-```
-promptwarchallege/
-├── client/                  # React frontend (Vite)
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Navbar.jsx
-│   │   │   ├── Hero.jsx
-│   │   │   ├── ChatAssistant.jsx
-│   │   │   ├── Timeline.jsx
-│   │   │   ├── BoothFinder.jsx
-│   │   │   └── Quiz.jsx
-│   │   ├── App.jsx
-│   │   ├── main.jsx
-│   │   └── index.css
-│   ├── index.html
-│   ├── vite.config.js
-│   ├── tailwind.config.js
-│   └── package.json
-├── server/                  # Express backend
-│   ├── routes/
-│   │   ├── chat.js          # /api/chat → Gemini AI
-│   │   ├── timeline.js      # /api/timeline → Google Sheets
-│   │   ├── map.js           # /api/map → booth coordinates
-│   │   └── quiz.js          # /api/quiz → MongoDB
-│   ├── models/
-│   │   ├── ChatHistory.js
-│   │   └── QuizScore.js
-│   ├── index.js
-│   └── package.json
-├── Dockerfile
-├── README.md
-└── package.json
-```
+## ✨ Key Features
 
----
+* 🎯 **Personalized Onboarding** — Dynamically adjusts answers based on the user's age, state, and voting history.
+* ✅ **Eligibility Checker** — Instantly verifies age and documentation requirements for Form 6 registration.
+* 🏛️ **11-Stage Process Breakdown** — Explains everything from the Model Code of Conduct (MCC) to Government Formation in simple terms.
+* 🗳️ **Booth Walkthrough** — A step-by-step guide to voting day (EVMs, VVPAT verification, and the indelible ink).
+* 🗣️ **Bilingual Support** — Seamlessly mixes English with common Hindi election terms (e.g., *Matdata*, *Chunav*).
+* ⚖️ **Zero Political Bias** — Hard-coded prompt guardrails ensure the AI informs without influencing.
+* 🔗 **Official Integration** — Always directs users to the official `voters.eci.gov.in` portal.
 
-## Setup & Run Locally
+## 🔄 How It Works
 
-### 1. Prerequisites
-- Node.js 18+
-- MongoDB (local or Atlas)
-- Google Gemini API key
+1. **User Opens App** 📱 
+   * The user is greeted by a clean, welcoming chat interface.
+2. **Answers Onboarding Questions** 💬 
+   * The AI asks for the user's age, state, and if they are a first-time voter.
+3. **Gets Personalized Guidance** 🗺️ 
+   * The user receives a tailored, step-by-step checklist to get registered and ready for polling day!
 
-### 2. Environment Variables
+### 🏗️ Architecture Flow
 
-Create `server/.env`:
-```env
-GEMINI_API_KEY=your_gemini_api_key
-MONGO_URI=mongodb://localhost:27017/electraguide
-PORT=8080
+```mermaid
+graph TD
+    %% Flowchart Nodes
+    User(("👤 Voter"))
+    UI["📱 React Frontend"]
+    Server{"⚙️ Node.js Backend"}
+    Claude["🧠 Claude AI Model"]
+    Mongo[("💾 MongoDB Atlas")]
 
-# Optional
-GOOGLE_SHEETS_API_KEY=your_sheets_api_key
-GOOGLE_SHEET_ID=your_sheet_id
+    %% Connections
+    User -- "1. Asks Election Query" --> UI
+    UI -- "2. Sends Chat Data" --> Server
+    Server -- "3. Prompt + Context" --> Claude
+    Claude -- "4. Neutral Guide" --> Server
+    Server -- "5. Saves Chat History" --> Mongo
+    Server -- "6. Returns JSON" --> UI
+    UI -- "7. Displays to Screen" --> User
+
+    %% Node Styling (More Compatible Syntax)
+    classDef user fill:#FF6B6B,stroke:#333,stroke-width:2px,color:#fff;
+    classDef frontend fill:#61DAFB,stroke:#333,stroke-width:2px,color:#000;
+    classDef backend fill:#8A2BE2,stroke:#333,stroke-width:2px,color:#fff;
+    classDef api fill:#FFD700,stroke:#333,stroke-width:2px,color:#000;
+    classDef database fill:#4CAF50,stroke:#333,stroke-width:2px,color:#fff;
+
+    class User user;
+    class UI frontend;
+    class Server backend;
+    class Claude api;
+    class Mongo database;
 ```
 
-Create `client/.env`:
-```env
-VITE_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
-VITE_API_URL=/api
-```
+## 🛠️ Tech Stack
 
-### 3. Install Dependencies
+| Component | Technology | Description |
+| :--- | :--- | :--- |
+| **Frontend** | React (Vite) | Blazing fast, interactive UI built for mobile-first accessibility. |
+| **Styling** | Tailwind CSS | Modern, responsive, and clean design system. |
+| **AI Model** | Claude 3.5 Sonnet | `claude-sonnet-4-20250514` for highly intelligent, nuanced, and strictly neutral conversational logic. |
+| **Backend API** | Node.js / Express | Lightweight server to securely manage API calls and state. |
+
+## 🚀 Getting Started
+
+To run ElectraGuide locally, follow these steps:
+
 ```bash
+# 1. Clone the repository
+git clone https://github.com/your-username/ElectraGuide.git
+cd ElectraGuide
+
+# 2. Install dependencies for both client and server
 npm run install:all
-```
 
-### 4. Run Development Servers
-```bash
-# Terminal 1 — Backend (port 8080)
+# 3. Create your environment file
+cp server/.env.example server/.env
+
+# 4. Start the development servers (requires two terminals)
+# Terminal 1:
 npm run dev:server
-
-# Terminal 2 — Frontend (port 5173)
+# Terminal 2:
 npm run dev:client
 ```
 
-Open **http://localhost:5173**
+## 🔐 Environment Variables
 
----
+Create a `.env` file in the `server` directory and add the following:
 
-## API Routes
-
-| Method | Route                  | Description              |
-|--------|------------------------|--------------------------|
-| POST   | `/api/chat`            | Chat with Gemini AI      |
-| GET    | `/api/chat/history/:id`| Get chat history         |
-| GET    | `/api/timeline`        | Election timeline steps  |
-| GET    | `/api/map`             | Polling booth locations  |
-| GET    | `/api/map/cities`      | Available cities list    |
-| GET    | `/api/quiz/questions`  | Get quiz questions       |
-| POST   | `/api/quiz/submit`     | Submit quiz answers      |
-| GET    | `/api/quiz/leaderboard`| Top scores               |
-
----
-
-## Deploy to Google Cloud Run
-
-### Build & Deploy
-```bash
-gcloud run deploy electra-guide \
-  --source . \
-  --platform managed \
-  --region asia-south1 \
-  --allow-unauthenticated \
-  --set-env-vars="GEMINI_API_KEY=your_key,MONGO_URI=your_mongo_uri"
+```env
+ANTHROPIC_API_KEY=your_claude_api_key_here
+PORT=8080
 ```
 
-### Expected URL
+## 📁 Project Structure
+
+```text
+ElectraGuide/
+├── client/                 # React Frontend
+│   ├── src/
+│   │   ├── components/     # UI Components (Chat UI, Bubbles)
+│   │   ├── App.jsx         # Main Application Logic
+│   │   └── index.css       # Tailwind Directives
+│   ├── package.json
+│   └── vite.config.js
+├── server/                 # Node.js Backend
+│   ├── routes/
+│   │   └── chat.js         # Claude API Integration & Persona Logic
+│   ├── index.js            # Express Server Setup
+│   └── package.json
+├── .gitignore
+└── README.md
 ```
-https://electra-guide-<hash>-el.a.run.app
-```
+
+## 📸 Screenshots
+
+<!-- Add screenshots here -->
+*Add high-quality screenshots of the chat interface, onboarding flow, and voting walkthrough here.*
+
+## 🏆 Hackathon Challenge
+
+**Built for Challenge 2 — Election Process Education**
+This project directly addresses the challenge prompt by gamifying and simplifying the civic education process, ensuring young Indians understand their rights and duties without wading through dense government documents.
+
+## 🏅 Why ElectraGuide Wins
+
+* **High Impact Target:** Directly targets the crucial 18–25 demographic, addressing the root cause of low youth voter turnout.
+* **Unbreakable Neutrality:** Engineered with strict guardrails to prevent AI hallucination or political bias, making it safe for official deployment.
+* **Hyper-Personalized:** Unlike static PDFs, the AI adapts to the user's specific state and age, making the information highly relevant.
+* **Scalable Architecture:** Built on lightweight React and Node, it can easily handle massive traffic spikes during election seasons.
+
+## 🌍 Impact & Vision
+
+Our vision is to scale ElectraGuide to serve India's 950 million voters. Future iterations will include full multi-lingual voice support for regional languages, WhatsApp bot integration for rural accessibility, and direct API tie-ins with the Election Commission of India (ECI) for real-time polling booth data.
+
+## 👥 Team
+
+| Name | Role | GitHub |
+| :--- | :--- | :--- |
+| Your Name | Full Stack Developer | [@your-username](https://github.com/jp7107) |
+
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
-
-## Google Sheets Format (Optional)
-
-If using Google Sheets for timeline data, create a sheet named `Timeline` with columns:
-
-| Title | Description | Icon | Duration |
-|-------|-------------|------|----------|
-| Announcement | ECI announces... | 📢 | Day 0 |
-
----
-
-Made with ❤️ for India's Democracy 🇮🇳
+<div align="center">
+<b>Democracy thrives when its citizens are informed.</b> 🇮🇳
+</div>
