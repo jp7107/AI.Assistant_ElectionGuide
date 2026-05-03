@@ -78,7 +78,7 @@ router.post('/', async (req, res) => {
     try {
       const result = await chat.sendMessage(message);
       reply = result.response.text();
-      
+
     } catch (textErr) {
       console.warn('Response text blocked or failed:', textErr.message);
       reply = "I apologize, but I couldn't generate a response to that specific question due to system safety filters. You generally need an identity proof (like Aadhaar, PAN, or Passport) and an address proof to register to vote. Please check the official Election Commission of India website for the exact list!";
