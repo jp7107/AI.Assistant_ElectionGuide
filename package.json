@@ -7,6 +7,10 @@
     "dev:client": "cd client && npm run dev",
     "install:all": "cd server && npm install && cd ../client && npm install",
     "build:client": "cd client && npm run build",
+    "build": "npm run install:all && npm run build:client",
     "start": "cd server && npm start"
+  },
+  "engines": {
+    "node": ">=18.x"
   }
 }
